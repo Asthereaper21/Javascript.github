@@ -1,1 +1,168 @@
-<h1>github</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programas JavaScript</title>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #000; /* Fondo negro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff; /* Texto blanco */
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #1c1c1c; /* Fondo gris oscuro */
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2); /* Sombra roja */
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff0000; /* Rojo para el título */
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+        }
+
+        .button {
+            background-color: #ff0000; /* Fondo rojo */
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(255, 0, 0, 0.4); /* Sombra roja */
+        }
+
+        .button:hover {
+            background-color: #cc0000; /* Oscurece al pasar */
+        }
+
+        .button:active {
+            background-color: #990000; /* Más oscuro cuando se pulsa */
+        }
+
+        #message {
+            margin-top: 30px;
+            font-size: 1.4rem;
+            color: #ff0000; /* Texto rojo */
+            background-color: #333; /* Fondo gris oscuro */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3); /* Sombra ligera */
+        }
+
+        .input-prompt {
+            font-size: 1rem;
+            color: #fff; /* Texto blanco */
+        }
+
+        /* Responsividad para pantallas más pequeñas */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .button {
+                font-size: 1rem;
+                padding: 12px 16px;
+            }
+
+            #message {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="title">Programas JavaScript</div>
+        <div class="button-container">
+            <button class="button" onclick="calcularRFC()">Programa 1: Calcular RFC</button>
+            <button class="button" onclick="ecuacionCuadratica()">Programa 2: Ecuación Cuadrática</button>
+            <button class="button" onclick="adivinaNumero()">Programa 3: Adivina un Número</button>
+        </div>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        // Función para Programa 1: Calcular RFC
+        function calcularRFC() {
+            let nombre = prompt('Ingresa tu nombre:');
+            let apellidoPaterno = prompt('Ingresa tu apellido paterno:');
+            let apellidoMaterno = prompt('Ingresa tu apellido materno:');
+            let fechaNacimiento = prompt('Ingresa tu fecha de nacimiento (DD/MM/AAAA):');
+
+            // Esta es una implementación básica para generar un RFC aproximado.
+            let rfc = apellidoPaterno.substring(0, 2) + apellidoMaterno.substring(0, 1) + nombre.substring(0, 1) + fechaNacimiento.substring(8, 10) + fechaNacimiento.substring(3, 5) + fechaNacimiento.substring(0, 2);
+            rfc = rfc.toUpperCase();
+
+            document.getElementById('message').textContent = 'Tu RFC es: ' + rfc;
+        }
+
+        // Función para Programa 2: Ecuación Cuadrática
+        function ecuacionCuadratica() {
+            let a = prompt('Ingresa el valor de a:');
+            let b = prompt('Ingresa el valor de b:');
+            let c = prompt('Ingresa el valor de c:');
+
+            // Convertimos los valores a números
+            a = parseFloat(a);
+            b = parseFloat(b);
+            c = parseFloat(c);
+
+            // Calculamos el discriminante
+            let discriminante = b * b - 4 * a * c;
+
+            if (discriminante > 0) {
+                let x1 = (-b + Math.sqrt(discriminante)) / (2 * a);
+                let x2 = (-b - Math.sqrt(discriminante)) / (2 * a);
+                document.getElementById('message').textContent = `Las soluciones son: x1 = ${x1}, x2 = ${x2}`;
+            } else if (discriminante === 0) {
+                let x = -b / (2 * a);
+                document.getElementById('message').textContent = `La solución doble es: x = ${x}`;
+            } else {
+                document.getElementById('message').textContent = 'No hay solución real';
+            }
+        }
+
+        // Función para Programa 3: Adivina un número
+        function adivinaNumero() {
+            const numeroCorrecto = 4; // Establecemos el número correcto como 4
+            const numeroUsuario = prompt('Adivina un número entre 1 y 100:');
+
+            if (numeroUsuario == numeroCorrecto) {
+                document.getElementById('message').textContent = '¡Correcto! Has adivinado el número.';
+            } else {
+                document.getElementById('message').textContent = 'Incorrecto. Inténtalo de nuevo.';
+            }
+        }
+    </script>
+
+</body>
+</html>
